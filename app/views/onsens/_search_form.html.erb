@@ -29,6 +29,8 @@
     </div>
     <%# 位置情報検索セクション %>
     <%= render 'location_search_form', f: f %>
+    <%# 営業時間検索セクション %>
+    <%= render 'open_hour_search_form', f: f %>
     <%# 検索実行ボタン %>
     <div class="text-center pt-2">
       <%= f.submit t('views.onsens.index.search'),
