@@ -7,3 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+#
+# 飲食店のテストデータ
+Restaurant.create({ name: "飲食店1" })
+Restaurant.create({ name: "飲食店2" })
+Restaurant.create({ name: "飲食店3" })
