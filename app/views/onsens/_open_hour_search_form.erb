@@ -6,26 +6,28 @@
     <div>
       <%= f.label :open_time, t('activerecord.attributes.onsen.open_time'),
                    class: "block text-sm font-bold mb-1" %>
-      <%= f.number_field :open_time,
-                          value: params[:open_time],
-                          step: "any",
+      <%= f.text_field :open_time,
+                          value: (params[:open_time].present? ? sprintf("%04d",params[:open_time].to_i) : nil),
+                          maxlength: 4,
+                          placeholder: "例）0900",
                           class: "w-full border rounded px-3 py-2",
-                          placeholder: "例: 1700",
+                          imputmode: "numeric",
                           'aria-label': t('activerecord.attributes.onsen.open_time'),
                           data: { open_hour_target: "open_time" } %>
-      <p class="text-xs text-gray-600 mt-1">半角数字のみで入力してください</p>
+      <p class="text-xs text-gray-600 mt-1">半角数字4桁24時間表記で入力してください</p>
     </div>
     <div>
       <%= f.label :close_time, t('activerecord.attributes.onsen.close_time'),
                    class: "block text-sm font-bold mb-1" %>
-      <%= f.number_field :close_time,
-                          value: params[:close_time],
-                          step: "any",
+      <%= f.text_field :close_time,
+                          value:(params[:close_time].present? ? sprintf("%04d",params[:close_time].to_i) : nil),
+                          maxlength: 4,
+                          placeholder: "例）2100",
                           class: "w-full border rounded px-3 py-2",
-                          placeholder: "例: 2300",
+                          imputmode: "numeric",
                           'aria-label': t('activerecord.attributes.onsen.close_time'),
                           data: { open_hour_target: "close_time" } %>
-      <p class="text-xs text-gray-600 mt-1">半角数字のみで入力してください</p>
+      <p class="text-xs text-gray-600 mt-1">半角数字4桁24時間表記で入力してください</p>
     </div>
   </div>
 </fieldset>
