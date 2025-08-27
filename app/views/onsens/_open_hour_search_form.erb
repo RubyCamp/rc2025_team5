@@ -1,0 +1,31 @@
+<%# 営業時間検索用パーシャル　%>
+<fieldset class="border rounded-lg p-4" data-controller="zipcode open-hour-search">
+  <legend class="px-2 text-sm font-bold text-gray-700">営業時間情報検索</legend>
+  <%# 営業開始時刻・終了時刻の直接入力 %>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <%= f.label :open_time, t('activerecord.attributes.onsen.open_time'),
+                   class: "block text-sm font-bold mb-1" %>
+      <%= f.number_field :open_time,
+                          value: params[:open_time],
+                          step: "any",
+                          class: "w-full border rounded px-3 py-2",
+                          placeholder: "例: 1700",
+                          'aria-label': t('activerecord.attributes.onsen.open_time'),
+                          data: { open_hour_target: "open_time" } %>
+      <p class="text-xs text-gray-600 mt-1">半角数字のみで入力してください</p>
+    </div>
+    <div>
+      <%= f.label :close_time, t('activerecord.attributes.onsen.close_time'),
+                   class: "block text-sm font-bold mb-1" %>
+      <%= f.number_field :close_time,
+                          value: params[:close_time],
+                          step: "any",
+                          class: "w-full border rounded px-3 py-2",
+                          placeholder: "例: 2300",
+                          'aria-label': t('activerecord.attributes.onsen.close_time'),
+                          data: { open_hour_target: "close_time" } %>
+      <p class="text-xs text-gray-600 mt-1">半角数字のみで入力してください</p>
+    </div>
+  </div>
+</fieldset>
