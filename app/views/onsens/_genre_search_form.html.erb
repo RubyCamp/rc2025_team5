@@ -1,0 +1,13 @@
+<%# ジャンル別検索用パーシャル　%>
+<fieldset class="border rounded-lg p-4" data-controller="zipcode open-hour-search">
+ <legend class="px-2 text-sm font-bold text-gray-700">ジャンル分け検索</legend>
+   <%= f.select :category, options_for_select([["イベント", "event"], ["温泉", "onsen"], ["夜景", "night_spot"], ["飲食店", "restaurant"]]),
+   { prompt: "カテゴリを選択してください" },
+   { class: "w-full px-3 py-2"} %>
+ </fieldset>
+
+
+
+
+
+
