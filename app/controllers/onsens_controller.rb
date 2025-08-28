@@ -23,6 +23,10 @@ class OnsensController < ApplicationController
     when "night_spot"
       # NightSpotモデルの全データを取得
       @results = NightSpot.all
+
+    else
+      # ジャンルが選択されていない場合、全てのモデルからデータを取得して結合する
+      @results = Onsen.all + Restaurant.all + Event.all + NightSpot.all
     end
   end
 

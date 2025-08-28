@@ -3,7 +3,7 @@
 <%= link_to onsens_path(spot), class: "block bg-white rounded-lg shadow-md hover:shadow-lg p-4 hover:bg-blue-50 transition-all duration-200 cursor-pointer border border-gray-100 focus:outline focus:ring-2 focus:ring-blue-400", 'aria-label': "#{spot.name}の詳細" do %>
   <div class="flex items-start gap-4">
     <%# 画像表示 %>
-    <% if spot.respond_to?(:images) && spot.images.attached? %>
+    <% if spot.images && spot.images.attached? %>
       <%= image_tag spot.images.first, class: "w-20 h-20 object-cover rounded-lg flex-shrink-0", alt: spot.name %>
     <% else %>
       <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400 flex-shrink-0 text-xs">No Image</div>
@@ -14,28 +14,19 @@
       <h2 class="text-lg font-semibold mb-2 text-gray-900 truncate"><%= spot.name %></h2>
 
       <%# 説明文 %>
-      <% if spot.respond_to?(:description) %>
+      <% if spot.description %>
         <div class="text-sm text-gray-600 mb-2 line-clamp-2"><%= truncate(spot.description, length: 60) %></div>
       <% end %>
 
       <%# タグ %>
-      <% if spot.respond_to?(:tags) && spot.tags.present? %>
+      <% if spot.tags && spot.tags.present? %>
         <div class="text-xs text-gray-500 mb-2">
-          <span class="font-medium">タグ:</span> <%= onsen.tags %><dt>
-          <span class="font-medium">営業時間:</span> <%= onsen.open.strftime("%H:%M")%>
-          <span class="font-midium">〜</span> <%= onsen.close.strftime("%H:%M")%>
+          <span class="font-medium">タグ:</span> <%= spot.tags %><dt>
+          <span class="font-medium">営業時間:</span> <%= spot.open&.strftime("%H:%M")%>
+          <span class="font-midium">〜</span> <%= spot.close&.strftime("%H:%M")%>
         </div>
       <% end %>
-
-      <%# レビュー・評価 %>
-      <% if spot.respond_to?(:reviews) && spot.reviews.any? %>
-        <div class="flex items-center">
-          <%= render partial: "shared/rating_stars", locals: { rating: (spot.reviews.average(:rating)&.round || 0) } %>
-          <span class="text-xs text-gray-500 ml-2">(<%= spot.reviews.count %>件)</span>
-        </div>
-      <% else %>
-        <span class="text-xs text-gray-400">未評価</span>
-      <% end %>
+      <%#レビュー消してます%>
     </div>
   </div>
 <% end %>
