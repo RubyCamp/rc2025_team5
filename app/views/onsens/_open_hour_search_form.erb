@@ -1,57 +1,39 @@
 <%# 営業時間検索用パーシャル　%>
-<%= form_with url: onsens_path, method: :get, html: { id: "open-time-form" } do |f| %>
-  <fieldset class="border rounded-lg p-4" data-controller="zipcode open-hour-search">
-    <legend class="px-2 text-sm font-bold text-gray-700">営業時間情報検索</legend>
-    <%# 営業開始時刻・終了時刻の直接入力 %>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div>
-        <%= f.label :open_time, t('activerecord.attributes.onsen.open_time'),
+<fieldset class="border rounded-lg p-4" data-controller="zipcode open-hour-search time-input">
+  <legend class="px-2 text-sm font-bold text-gray-700">営業時間情報検索</legend>
+  <%# 営業開始時刻・終了時刻の直接入力 %>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <%= f.label :open_time, t('activerecord.attributes.onsen.open_time'),
                    class: "block text-sm font-bold mb-1" %>
-        <%= f.text_field :open_time,
-                          id: "open_time-input",
-                          value: (params[:open_time].present? ? sprintf("%04d",params[:open_time].to_i) : nil),
-                          maxlength: 4,
-                          placeholder: "例）0900",
-                          class: "w-full border rounded px-3 py-2",
-                          imputmode: "numeric",
-                          'aria-label': t('activerecord.attributes.onsen.open_time'),
-                          data: { open_hour_target: "open_time" } %>
-        <p class="text-xs text-gray-600 mt-1">半角数字4桁24時間表記で入力してください</p>
-        <%#現在時刻入力ボタンの作成%>
+      <div class="flex gap-2">
+        <%= f.number_field :open_time,
+                            value: params[:open_time],
+                            step: "any",
+                            class: "flex-1 border rounded px-3 py-2",
+                            placeholder: "例: 1700",
+                            'aria-label': t('activerecord.attributes.onsen.open_time'),
+                            data: { open_hour_target: "open_time", time_input_target: "input" } %>
         <button type="button"
-              id="now-time-button"
-          class="mt-2 px-3 py-2 bg-gray-200 rounded hover:bg-blue-100 text-sm focus:ring-2 focus:ring-blue-500">
-          現在時刻を入力
+                class="px-3 py-2 bg-gray-200 rounded hover:bg-blue-100 text-sm whitespace-nowrap focus:ring-2 focus:ring-blue-500 flex-shrink-0"
+                aria-label="現在時刻を入力"
+                data-action="click->time-input#fillCurrentTime">
+          現在時刻
         </button>
       </div>
-      <div>
-        <%= f.label :close_time, t('activerecord.attributes.onsen.close_time'),
+      <p class="text-xs text-gray-600 mt-1">半角数字のみで入力してください</p>
+    </div>
+    <div>
+      <%= f.label :close_time, t('activerecord.attributes.onsen.close_time'),
                    class: "block text-sm font-bold mb-1" %>
-        <%= f.text_field :close_time,
-                          value:(params[:close_time].present? ? sprintf("%04d",params[:close_time].to_i) : nil),
-                          maxlength: 4,
-                          placeholder: "例）2100",
+      <%= f.number_field :close_time,
+                          value: params[:close_time],
+                          step: "any",
                           class: "w-full border rounded px-3 py-2",
-                          imputmode: "numeric",
+                          placeholder: "例: 2300",
                           'aria-label': t('activerecord.attributes.onsen.close_time'),
                           data: { open_hour_target: "close_time" } %>
-        <p class="text-xs text-gray-600 mt-1">半角数字4桁24時間表記で入力してください</p>
-      </div>
+      <p class="text-xs text-gray-600 mt-1">半角数字のみで入力してください</p>
     </div>
-    <%#検索ボタンの作成%>
-  </fieldset>
-<% end %>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const nowTimeButton = document.getElementById("now-time-button");
-    const openTimeInput = document.getElementById("open_time-input");
-
-    nowTimeButton.addEventListener("click", function () {
-      const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const timeString = hours + minutes;
-      openTimeInput.value = timeString;
-    });
-  });
-</script>
+  </div>
+</fieldset>
