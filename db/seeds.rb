@@ -9,9 +9,27 @@
 #   end
 #
 # 飲食店のテストデータ
-Restaurant.create({ name: "飲食店1" })
-Restaurant.create({ name: "飲食店2" })
-Restaurant.create({ name: "飲食店3" })
+Restaurant.create!(
+  name: '出雲蕎麦おくに',
+  geo_lat: '35.39887181',
+  geo_lng: '132.68156924',
+  descrimination: 'そばの風味が際立つ絶品のつゆが自慢'
+)
+
+Restaurant.create!(
+  name: '味処 繁',
+  geo_lat: '35.469106',
+  geo_lng: '133.059824',
+  descremination: '宍道湖しじみを忍ばせた釜飯が絶品'
+)
+
+Restaurant.create!(
+  name: '看雲楼',
+  geo_lat: '35.401869',
+  geo_lng: '132.685469',
+  descremination: '名物はうず煮。ふぐ出汁と具材の旨み、葛餡によるとろみが優しい味わいは、観光客から地元客まで幅広く支持されています。'
+)
+
 
 # 夜景のテストデータ
 NightSpot.create!(
