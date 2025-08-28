@@ -115,3 +115,8 @@ ja:
   flash:
     review_created: "レビューを投稿しました。"
     review_failed: "レビュー投稿に失敗しました。"
+  activerecord:
+    attributes:
+      onsen:
+        open_time: 営業開始時刻
+        close_time: 営業終了時刻

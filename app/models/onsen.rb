@@ -126,4 +126,33 @@ class Onsen < ApplicationRecord
       DistanceCalculatorService.calculate(lat, lng, onsen.geo_lat, onsen.geo_lng) <= radius
     end
   end
+
+  # 営業開始・終了時刻のバリデーション
+  # 4桁の半角数字のみ許可
+  validates :open_time, format: { with: /\A\d{4}\z/, message: 'は4桁の半角数字で入力してください' }
+  validates :close_time, format: { with: /\A\d{4}\z/, message: 'は4桁の半角数字で入力してください' }
+
+  # 0000〜2359 の範囲のみ許可
+  validates :open_time, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 2359, message: 'は0000〜2359の範囲で入力してください' }
+  validates :close_time, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 2359, message: 'は0000〜2359の範囲で入力してください' }
+
+  # 分が00〜59かチェック（例: 1389 → 無効）
+  validate :open_time_minute_format
+  validate :close_time_minute_format
+
+  private
+
+  def open_time_minute_format
+    return if open_time.blank? || open_time.to_s !~ /\A\d{4}\z/
+
+    minutes = open_time.to_i % 100
+    errors.add(:open_time, 'の分は00〜59の範囲で入力してください') if minutes >= 60
+  end
+
+  def close_time_minute_format
+    return if close_time.blank? || close_time.to_s !~ /\A\d{4}\z/
+
+    minutes = close_time.to_i % 100
+    errors.add(:close_time, 'の分は00〜59の範囲で入力してください') if minutes >= 60
+  end
 end
