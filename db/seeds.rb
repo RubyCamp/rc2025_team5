@@ -15,8 +15,8 @@ Restaurant.create!(
   geo_lng: '132.68156924',
   description: 'そばの風味が際立つ絶品のつゆが自慢',
   tags: '蕎麦',
-  open_time: '08:00',
-  close_time: '16:00'
+  open: '08:00',
+  close: '16:00'
 )
 
 Restaurant.create!(
@@ -25,8 +25,8 @@ Restaurant.create!(
   geo_lng: '133.05719677',
   description: '宍道湖産しじみをはじめ、地域の野菜など、季節感や旬にも気を配り仕入れ。それらを串揚げやサラダ、各種おつまみなどで提供しています。',
   tags: 'しじみ',
-  open_time: '17:00',
-  close_time: '24:00'
+  open: '17:00',
+  close: '24:00'
 )
 
 Restaurant.create!(
@@ -35,8 +35,8 @@ Restaurant.create!(
   geo_lng: '132.685469',
   description: '名物はうず煮。ふぐ出汁と具材の旨み、葛餡によるとろみが優しい味わいは、観光客から地元客まで幅広く支持されています。',
   tags: 'うず煮',
-  open_time: '11:30,17:30',
-  close_time: '14:00,21:00'
+  open: '11:30,17:30',
+  close: '14:00,21:00'
 )
 
 
@@ -47,8 +47,8 @@ NightSpot.create!(
   geo_lng: '133.05195668',
   description: '宍道湖の東端に位置する、大橋川にかかる宍道湖大橋（しんじこおおはし）。ライトアップされた橋だけでなく、ビルや街灯の明かりが宍道湖に反射した美しいリフレクションを楽しめます。',
   tags: 'ライトアップ',
-  open_time: '19:00',
-  close_time: '06:00'
+  open: '19:00',
+  close: '06:00'
 )
 
 NightSpot.create!(
@@ -57,8 +57,8 @@ NightSpot.create!(
   geo_lng: '133.06367218',
   description: '星景撮影スポットとして人気の場所。高い丘にあるため、光害が少なく、星空を美しく撮影できます。また、直径3メートル、重さは1トンを超える石の風車がある点も風の丘公園の特徴です。',
   tags: '星',
-  open_time: '19:00',
-  close_time: '06:00'
+  open: '19:00',
+  close: '06:00'
 )
 
 NightSpot.create!(
@@ -67,8 +67,8 @@ NightSpot.create!(
   geo_lng: '132.62945422',
   description: '灯台は高さ43.65m、海面から灯塔の頭上までは63.30mと、日本一の高さを誇ります。灯台を上ると見える日本海の景色も良いですが、断崖絶壁が連なるダイナミックで美しい風景と真っ白な灯台を入れた夜景撮影が人気です。',
   tags: '自然',
-  open_time: '19:00',
-  close_time: '06:00'
+  open: '19:00',
+  close: '06:00'
 )
 # イベントのテストデータ
 Event.create!(
@@ -77,8 +77,8 @@ Event.create!(
   geo_lng: '133.052399',
   description: '松江水郷祭湖上花火大会は、島根県松江市の宍道湖で開催される日本有数の花火大会です。',
   tags: '祭り',
-  open_time: '10:00',
-  close_time: '21:00'
+  open: '10:00',
+  close: '21:00'
 )
 
 Event.create!(
@@ -87,8 +87,8 @@ Event.create!(
   geo_lng: '133.05073382',
   description: '「松江水燈路（読み方：まつえすいとうろ）」は、松江の秋の風物詩。松江城周辺がライトアップされる幻想的な光のイベントです。期間中は、松江城やその周辺に多くの行燈が並べられ、美しい風景を楽しむことができます。',
   tags: '美しい',
-  open_time: '18:00',
-  close_time: '21:00'
+  open: '18:00',
+  close: '21:00'
 )
 
 Event.create!(
@@ -97,8 +97,8 @@ Event.create!(
   geo_lng: '132.90184974',
   description: 'ソメイヨシノの見ごろに合わせて、雲南市木次町のJR木次駅前商店街周辺を会場に「雲南市桜まつり」が開催されます。',
   tags: '花見',
-  open_time: '10:00',
-  close_time: '18:00'
+  open: '10:00',
+  close: '18:00'
 )
 
 # Onsenクラスにデータを追加するコードを書く
