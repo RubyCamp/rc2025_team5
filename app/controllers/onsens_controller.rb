@@ -3,12 +3,11 @@ class OnsensController < ApplicationController
   # GET /onsens or /onsens.json
   def index
     @results = []
+    # 温泉カテゴリの場合のパラメータを許可
+    @search_params = params.permit(:q, :tags, :open_time, :close_time)
     # params[:category] の値に応じて処理を分岐
     case params[:category]
     when "onsen"
-      # 温泉カテゴリの場合のパラメータを許可
-      @search_params = params.permit(:q, :tags, :open_time, :close_time)
-
       # Onsenモデルの検索メソッドを呼び出し、新しい順でソート
       @results = Onsen.search(@search_params).order(created_at: :desc)
 
@@ -26,7 +25,7 @@ class OnsensController < ApplicationController
 
     else
       # ジャンルが選択されていない場合、全てのモデルからデータを取得して結合する
-      @results = Onsen.all + Restaurant.all + Event.all + NightSpot.all
+      @results = Onsen.asearch(@search_params).order(created_at: :desc) + Restaurant.all + Event.all + NightSpot.all
     end
   end
 
