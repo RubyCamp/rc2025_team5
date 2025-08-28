@@ -11,7 +11,9 @@
       <div class="text-sm text-gray-600 mb-2 line-clamp-2"><%= truncate(onsen.description, length: 60) %></div>
       <% if onsen.tags.present? %>
         <div class="text-xs text-gray-500 mb-2">
-          <span class="font-medium">タグ:</span> <%= onsen.tags %>
+          <span class="font-medium">タグ:</span> <%= onsen.tags %><dt>
+          <span class="font-medium">営業時間:</span> <%= onsen.open.strftime("%H:%M")%>
+          <span class="font-midium">〜</span> <%= onsen.close.strftime("%H:%M")%>
         </div>
       <% end %>
       <div class="flex items-center">
