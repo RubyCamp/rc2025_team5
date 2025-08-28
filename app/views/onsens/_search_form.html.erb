@@ -19,7 +19,7 @@
       <%# タグでの絞り込み検索 %>
       <div>
         <%= f.label :tags, t('activerecord.attributes.onsen.tags'),
-                     class: "block text-sm font-bold mb-1" %>
+    gi                class: "block text-sm font-bold mb-1" %>
         <%= f.text_field :tags, value: params[:tags],
                           class: "w-full border rounded px-3 py-2",
                           placeholder: "例：露天風呂,美肌",
@@ -38,4 +38,49 @@
                    'aria-label': t('views.onsens.index.search') %>
     </div>
   <% end %>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const button = document.getElementById("now-time-button");
+      const input = document.getElementById("open-time-input");
+
+      button.addEventListener("click", function () {
+        const now = new Date();
+        const hh = String(now.getHours()).padStart(2, "0");
+        const mm = String(now.getMinutes()).padStart(2, "0");
+        input.value = hh + mm;
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("open-time-form");
+    const input = document.getElementById("open-time-input");
+    const errorMessage = document.getElementById("time-error-message");
+    form.addEventListener("submit", function (event) {
+    const value = input.value.trim();
+    if (!/^\d{4}$/.test(value)) {
+    showError("4桁の半角数字で入力してください（例：1700）");
+    event.preventDefault();
+    return;
+    }
+    const num = parseInt(value, 10);
+    const minutes = num % 100;
+    const hours = Math.floor(num / 100);
+    if (hours > 23 || minutes > 59) {
+    showError("0000〜2359 の間で、分は 00〜59 で入力してください");
+    event.preventDefault();
+    return;
+    }
+    hideError();
+    });
+    function showError(msg) {
+    errorMessage.textContent = msg;
+    errorMessage.classList.remove("hidden");
+    }
+    function hideError() {
+    errorMessage.textContent = "";
+    errorMessage.classList.add("hidden");
+    }
+    });
+  </script>
 </div>
