@@ -17,7 +17,8 @@ class Onsen < ApplicationRecord
     scope = apply_text_search(scope, params[:q])
     scope = apply_tag_search(scope, params[:tags])
     scope = apply_location_search(scope, params)
-    scope = apply_open_search(scope, params[:open_time], params[:close_time])
+    scope = apply_open_search(scope, params[:open_time])
+    scope = apply_close_search(scope, params[:close_time])
 
     scope
   end
@@ -53,14 +54,14 @@ class Onsen < ApplicationRecord
   end
 
   # 営業時間の検索
-  def self.apply_open_search(scope, open, close)
+  def self.apply_open_search(scope, open)
     return scope unless open.present?
-    scope.where("to_char(open, 'HH24MI') BETWEEN ? AND ?", open, close)
+    scope.where("to_char(open, 'HH24MI') <= ?", open)
   end
 
-  def self.apply_close_search(scope, close, open)
+  def self.apply_close_search(scope, close)
     return scope unless close.present?
-    scope.where("to_char(close, 'HH24MI') BETWEEN ? AND ?", open, close)
+    scope.where("to_char(close, 'HH24MI') >= ?", close)
   end
 
 
