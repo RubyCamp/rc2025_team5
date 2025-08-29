@@ -10,7 +10,7 @@
     <%# 地図エリア（左側・デスクトップ時） %>
     <div class="order-2 lg:order-1 z-10">
       <div class="relative h-96 lg:h-[600px] rounded-lg overflow-hidden shadow-lg">
-        <div data-controller="map" data-map-target="container" data-map-onsens="<%= h @onsens.to_json(only: [:id, :name, :geo_lat, :geo_lng]) %>" style="width: 100%; height: 100%;"></div>
+        <div data-controller="map" data-map-target="container" data-map-onsens="<%= h @results.to_json(only: [:id, :name, :geo_lat, :geo_lng]) %>" style="width: 100%; height: 100%;"></div>
         <button type="button"
                 class="absolute top-3 right-3 bg-white border rounded-lg px-4 py-2 text-sm shadow-lg hover:bg-blue-50 z-10 focus:ring-2 focus:ring-blue-500"
                 data-action="click->map#locate">
@@ -21,16 +21,16 @@
     <%# 温泉一覧エリア（右側・デスクトップ時） %>
     <div class="order-1 lg:order-2">
       <div class="space-y-4 lg:max-h-[600px] lg:overflow-y-auto lg:pr-2">
-        <% if @onsens.any? %>
+        <% if @results.respond_to?(:any?) %>
           <p class="text-sm text-gray-600 mb-4">
-            検索結果: <%= @onsens.count %>件見つかりました
+            検索結果: <%= @results.count %>件の施設・スポットが見つかりました
           </p>
-          <% @onsens.each do |onsen| %>
-            <%= render partial: "spot_card", locals: { onsen: onsen } %>
+          <% @results.each do |spot| %>
+            <%= render partial: "spot_card", locals: { spot: spot } %>
           <% end %>
         <% else %>
           <div class="text-center py-8 text-gray-500">
-            <p class="text-lg mb-2">🔍 見つかりませんでした</p>
+            <p class="text-lg mb-2">🔍 施設・スポットが見つかりませんでした</p>
             <p class="text-sm">検索条件を変更してお試しください</p>
           </div>
         <% end %>
