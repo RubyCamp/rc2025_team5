@@ -23,14 +23,14 @@
       <div class="space-y-4 lg:max-h-[600px] lg:overflow-y-auto lg:pr-2">
         <% if @onsens.any? %>
           <p class="text-sm text-gray-600 mb-4">
-            検索結果: <%= @onsens.count %>件の温泉が見つかりました
+            検索結果: <%= @onsens.count %>件見つかりました
           </p>
           <% @onsens.each do |onsen| %>
             <%= render partial: "spot_card", locals: { onsen: onsen } %>
           <% end %>
         <% else %>
           <div class="text-center py-8 text-gray-500">
-            <p class="text-lg mb-2">🔍 温泉が見つかりませんでした</p>
+            <p class="text-lg mb-2">🔍 見つかりませんでした</p>
             <p class="text-sm">検索条件を変更してお試しください</p>
           </div>
         <% end %>
