@@ -25,7 +25,7 @@ class OnsensController < ApplicationController
 
     else
       # ジャンルが選択されていない場合、全てのモデルからデータを取得して結合する
-      @results = Onsen.asearch(@search_params).order(created_at: :desc) + Restaurant.all + Event.all + NightSpot.all
+      @results = Onsen.search(@search_params).order(created_at: :desc) + Restaurant.all + Event.all + NightSpot.all
     end
   end
 
